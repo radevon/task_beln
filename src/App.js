@@ -3,22 +3,38 @@ import './App.css';
 import { fetchData } from './service/service';
 import { useEffect, useState } from 'react';
 import ProductList from './components/ProductList';
+import AddProduct from './components/AddProduct';
 
+/**
+ * Корневой компонент приложения
+ *
+ */
 function App() {
 
   const [Products,setProducts]=useState([]);
+  const [sortParam,setSortParam]=useState({sortField:'name', sortType:1});
   
- useEffect(()=>{
-  fetchData().then(data=>{setProducts(data)});
- },[])
+  // обработчик кнопки добавления позиции
+  function addProduct(item){
+    setProducts([...Products,item]);
+  }
+  // обработчик кнопки удаления позиции
+  function removeProduct(index){
+    let copyProdycts=[...Products];
+    copyProdycts.splice(index,1);
+    setProducts(copyProdycts);
+  }
+  // подключаем мнимую api-шку
+  useEffect(()=>{
+    fetchData().then(data=>{ setProducts(data)});
+  },[])
 
   return (
-    <div className="container App">
-      
-     <ProductList items={Products} title="Список позиций"></ProductList>
-      
-      
-      
+    <div className="App"> 
+      <div className='container'>    
+       <ProductList items={Products} title="Список позиций товаров" deleteFn={removeProduct} sortParam={sortParam}></ProductList>
+       <AddProduct create={addProduct}></AddProduct> 
+     </div>
     </div>
   );
 }

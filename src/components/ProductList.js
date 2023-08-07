@@ -1,16 +1,31 @@
 import Product from "./Product";
+import SortIcon from "./SortIcon";
 
-function ProductList({items, title}){
+/**
+ * Компонент отображающий список товаров в виде таблицы
+ * @param items - элементы данных
+ * @param deleteFn - функция пробрасываемая в дочерний компонент для удаления позиции
+ */
+function ProductList({ items, title, deleteFn, sortParam}) {
 
-    let list=items.map((item)=> (
-        <Product {...item}></Product>
-    ))
 
-    return (
+  return (
     <div>
-        <h2>{title}</h2>
-        {list }
+      <h2 className="teal-text">{title}</h2>
+      <div className="flex-row header">
+            <div className='flex-column'> <span className="sortable-name" title="Нажмите для сортировки по полю">Наименование</span> {sortParam.sortField==="name"?<SortIcon sortType={sortParam.sortType}></SortIcon>:<span></span>}</div>
+            <div className='flex-column'><span className="sortable-name" title="Нажмите для сортировки по полю">Категория</span> {sortParam.sortField==="category"?<SortIcon sortType={sortParam.sortType}></SortIcon>:<span></span>}</div>
+            <div className='flex-column'><span className="sortable-name" title="Нажмите для сортировки по полю">Статус наличия</span> {sortParam.sortField==="stocked"?<SortIcon sortType={sortParam.sortType}></SortIcon>:<span></span>}</div> 
+            <div className='flex-column'><span className="sortable-name" title="Нажмите для сортировки по полю">Цена</span> {sortParam.sortField==="price"?<SortIcon sortType={sortParam.sortType}></SortIcon>:<span></span>}</div>  
+            <div className='remove-column'>&nbsp;</div> 
+        </div>
+       
+    {items.length===0? ( <div className="center-align">отсутствуют товары</div>) : 
+          items.map((item,i) => (
+        <Product index={i} {...item} key={i} deleteFn={deleteFn}></Product>
+      ))
+    }
     </div>
-    );
+  );
 }
-export default ProductList
+export default ProductList;
