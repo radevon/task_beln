@@ -14,6 +14,7 @@ function AddProduct({create}){
     function addProduct(){
         if(product.name.trim()!==""&&product.category.trim()!==""){
             product._id=Date.now(); // использую время в милисекундах для генерации уникального id, в данном случае для демонстрации допустимо
+            product.price=+product.price;
             create(product);
             M.toast({html: 'Добавлена новая позиция.', classes:"green lighten-1"})
             setProduct(defaultProduct);
@@ -39,7 +40,7 @@ function AddProduct({create}){
                         Отсутствует
                         <input type="checkbox" checked={product.stocked} onChange={e=>setProduct({...product, stocked:e.target.checked})}></input>
                         <span className="lever"></span>
-                        Вналичии
+                        В наличии
                         </label>
                     </div>
                 </div> 

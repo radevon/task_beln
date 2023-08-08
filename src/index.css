@@ -21,6 +21,10 @@ code {
  height: 100%;
 }
 
+.App {
+  height: 100%;
+}
+
 .flex-row{
   display: flex;
   width: 100%;
@@ -44,9 +48,10 @@ code {
 }
 
 .container{
+  margin-top: 10px;
   padding: 10px;
-  background-color: #fff;
-  min-height: 90%;  
+  background-color: #fefefe;
+  min-height: 80%;  
 }
 
 .flex-row:not(.header,.footer):hover{
@@ -71,4 +76,22 @@ code {
 
 .sortable-name:hover{
   color: #e7e6e6;
+}
+
+#filter-panel{
+  min-width: 190px;
+  margin:0.5%;
+  left: 0;
+  top:0;
+  background-color: #ffffffbe;
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+
+@media only screen and (min-width: 1200px){
+
+  #filter-panel{
+    width:14%;
+    position: absolute;
+  }
 }
