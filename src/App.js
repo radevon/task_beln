@@ -19,10 +19,9 @@ function App() {
     setProducts([...Products,item]);
   }
   // обработчик кнопки удаления позиции
-  function removeProduct(index){
+  function removeProduct(_id){
     let copyProdycts=[...Products];
-    copyProdycts.splice(index,1);
-    setProducts(copyProdycts);
+    setProducts(copyProdycts.filter(x=>x._id!==_id));
   }
   // подключаем мнимую api-шку
   useEffect(()=>{

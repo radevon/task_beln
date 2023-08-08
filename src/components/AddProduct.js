@@ -13,6 +13,7 @@ function AddProduct({create}){
     // функция обработчик добавления новой позиции
     function addProduct(){
         if(product.name.trim()!==""&&product.category.trim()!==""){
+            product._id=Date.now(); // использую время в милисекундах для генерации уникального id, в данном случае для демонстрации допустимо
             create(product);
             M.toast({html: 'Добавлена новая позиция.', classes:"green lighten-1"})
             setProduct(defaultProduct);

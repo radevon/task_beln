@@ -1,8 +1,8 @@
 /**
  * Компонент отображающий одну единицу продукции из списка (в виде одной строки таблицы)
- * @param index - использую вместо id для удаления элементов (т. к. тестовые данные не содержат id), хотя в реальном проекте индекс массива нежелательно юзать
+ * @param _id - использую вместо id для удаления элементов (т. к. тестовые данные не содержат id)
  */
-function Product({index,name,category,price,stocked, deleteFn}){
+function Product({_id,name,category,price,stocked, deleteFn}){
 
     
     // рисую элемент в зависимости от наличия stocked
@@ -15,7 +15,7 @@ function Product({index,name,category,price,stocked, deleteFn}){
             <div className='flex-column'>{icon}</div> 
             <div className='flex-column'>{'$'+price}</div>    
             <div className='remove-column'>
-                <button className="btn-floating btn-small waves-effect waves-light red" onClick={()=>deleteFn(index)} title="Удалить позицию"><i className="material-icons">remove</i></button>
+                <button className="btn-floating btn-small waves-effect waves-light red" onClick={()=>deleteFn(_id)} title="Удалить позицию"><i className="material-icons">remove</i></button>
             </div> 
         </div>
     )
